@@ -40,7 +40,10 @@
     background-color: #ffffff;
       border: 3px solid #dcdcdc; /* Border color same as first card */
        border-radius: 40px; /* Rounded corners */
-       padding: 30px;
+       padding-top: 30px;
+       padding-bottom: 30px;
+       padding-left: 20px;
+       padding-right: 20px;
   }
 
   .info-card {
