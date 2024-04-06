@@ -1,0 +1,77 @@
+.title {
+  padding-top: 20px;
+  font-size: 50px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: bold;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+ 
+}
+
+.title2 {
+  font-size: 30px;
+  font-family: monospace;
+  font-weight: bolder;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: rgb(21, 2, 2);
+  color: rgb(255, 255, 255);
+ 
+}
+
+.system-card {
+    background-color: #f8f9fa; /* Light gray */
+  
+  }
+  .card-title {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bold;
+    font-size: 30px;
+    
+  }
+
+  .card-body{
+    background-color: #ffffff;
+      border: 3px solid #dcdcdc; /* Border color same as first card */
+       border-radius: 40px; /* Rounded corners */
+  }
+
+  .card-body2{
+    background-color: #ffffff;
+      border: 3px solid #dcdcdc; /* Border color same as first card */
+       border-radius: 40px; /* Rounded corners */
+       padding: 30px;
+  }
+
+  .info-card {
+    background-color: whitesmoke;
+    border: 3px solid #dcdcdc; /* Border color same as first card */
+       border-radius: 40px;
+  }
+
+  .info-card2 {
+    margin-top: 50px;
+    background-color: whitesmoke;
+    border: 3px solid #dcdcdc; /* Border color same as first card */
+    border-radius: 40px;
+   
+  }
+  body{
+      background-color: #FF7518;
+  }
+  .btn {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  }
+
+  .logo {
+    width: 300px;
+    height: auto;
+}
+
+.custom-border {
+    border-color: rgb(9, 101, 32);
+}
+
+.password-toggle {
+    cursor: pointer;
+}

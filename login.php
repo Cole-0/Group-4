@@ -24,37 +24,18 @@
     <!-- Second Column -->
   
     <div class="col-md-6">
-      <div class="card info-card">
-        <div class="card-body"> <center>
-          <h5 class="card-title">SIGN IN</h5>
-          <h6>Log In Your Account? <a href="login.php" class="link-primary">Click Here!</a></h6></center>
+      <div class="card info-card2">
+        <div class="card-body2"> <center>
+          <h5 class="card-title">LOG IN</h5>
+          <h6>Don't have an Account? <a href="main.php" class="link-primary">Create Here!</a></h6></center>
 
-          <div class="row mb-2"> <!-- Added mb-3 class for bottom margin -->
-            <div class="col-md-6">
-              <label for="firstname">First Name:</label>
-              <input type="text" class="form-control custom-border" id="firstname" placeholder="Enter your first name">
-            </div>
-            <div class="col-md-6">
-              <label>Last Name:</label>
-              <input type="text" class="form-control custom-border" id="lastname" placeholder="Enter your last name">
-            </div>
-          </div>
-          <div class="row mb-2"> <!-- Added mb-3 class for bottom margin -->
-            <div class="col-md-6">
-              <label for="firstname">Contact Number:</label>
-              <input type="text" class="form-control custom-border" id="contactno" placeholder="Enter your contact number">
-            </div>
-            <div class="col-md-6">
-              <label>Course:</label>
-              <input type="text" class="form-control custom-border" id="course" placeholder="Enter your course">
-            </div>
-          </div>
-          <div class="col-12 mb-2">
+            
+          <div class="col-12 mb-3">
             <label>Email:</label>
             <input type="text" class="form-control custom-border" id="email" placeholder="Enter your email">
           </div>
           <div class="col-md-12">
-          <div class="input-group mb-2">
+          <div class="input-group mb-3">
               <div class="input-group-prepend">
                   <span class="input-group-text">Password:</span>
               </div>
@@ -64,19 +45,11 @@
               </span>
           </div>
       </div>
-      <div class="input-group mb-2">
-          <div class="input-group-prepend">
-              <span class="input-group-text">Confirm Password</span>
-          </div>
-          <input type="password" class="form-control custom-border" id="confirm-password" placeholder="" aria-label="Confirm Password" aria-describedby="password-addon-2">
-          <span class="input-group-text password-toggle" id="password-addon-2">
-              <i class="fas fa-eye"></i>
-          </span>
-      </div>
+      
 
 
         <div class="row mt-2">
-          <div class="col-8 mb-2"> <!-- Added mb-3 class for bottom margin -->
+          <div class="col-8 mb-3"> <!-- Added mb-3 class for bottom margin -->
               <div class="input-group">
                   <div class="input-group-prepend">
                       <span class="input-group-text">VERIFICATION CODE</span>
