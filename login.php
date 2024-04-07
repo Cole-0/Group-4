@@ -18,7 +18,7 @@
       <h2 class="title">CCSICT FACULTY</h2>
       <h3 class= "title2">Seminar / Training / Conference Monitory System</h3>
 
-      <img src="logosystem.png" class="logo" alt="System Image">
+      <img src="assets/logosystem.png" class="logo" alt="System Image">
     </div></center>
 
     <!-- Second Column -->
@@ -27,7 +27,7 @@
       <div class="card info-card2">
         <div class="card-body2"> <center>
           <h5 class="card-title">LOG IN</h5>
-          <h6>Don't have an Account? <a href="main.php" class="link-primary">Create Here!</a></h6></center>
+          <h6>Don't have an Account? <a href="register.php" class="link-primary">Create Here!</a></h6></center>
 
             
           <div class="col-12 mb-3">
