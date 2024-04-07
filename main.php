@@ -18,7 +18,7 @@
       <h2 class="title">CCSICT FACULTY</h2>
       <h3 class= "title2">Seminar / Training / Conference Monitory System</h3>
 
-      <img src="logosystem.png" class="logo" alt="System Image">
+      <img src="assets\logosystem.png" class="logo" alt="System Image">
     </div></center>
 
     <!-- Second Column -->
