@@ -111,7 +111,7 @@ if (isset($_POST['submit'])) {
                     <div class="card-body">
                         <center>
                             <h5 class="card-title">SIGN IN</h5>
-                            <h6>Log In Your Account? <a href="login.php" class="link-primary">Click Here!</a></h6>
+                            <h6>Log In Your Account? <a href="index.php" class="link-primary">Click Here!</a></h6>
                         </center>
                         <form method="post" action="register.php">
                             <div class="row mb-2">
