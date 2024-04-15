@@ -141,11 +141,12 @@ if (isset($_POST['submit'])) {
                                 <input type="text" class="form-control custom-border" name="email" placeholder="Enter your email">
                             </div>
                             <div class="col-md-12">
+                              
                                 <div class="input-group mb-2">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">Password:</span>
                                     </div>
-                                    <input type="password" class="form-control custom-border" name="password" placeholder="Enter your password" aria-label="Password" aria-describedby="password-addon-1">
+                                    <input type="password" class="form-control custom-border"  name="password" id="password" placeholder="Enter your password" aria-label="Password" aria-describedby="password-addon-1">
                                     <span class="input-group-text password-toggle" id="password-addon-1">
                                         <i class="fas fa-eye"></i>
                                     </span>
@@ -155,18 +156,18 @@ if (isset($_POST['submit'])) {
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">Confirm Password</span>
                                 </div>
-                                <input type="password" class="form-control custom-border" name="confirmPassword" placeholder="" aria-label="Confirm Password" aria-describedby="password-addon-2">
+                                <input type="password" class="form-control custom-border" name="confirmPassword" id="confirm-password" placeholder="" aria-label="Confirm Password" aria-describedby="password-addon-2">
                                 <span class="input-group-text password-toggle" id="password-addon-2">
                                     <i class="fas fa-eye"></i>
                                 </span>
-                            </div>
-                            </div>
+                            </div><br>
                             <center>
                                 <button type="submit" class="btn py-1 px-4" name="submit" style="background-color: #ffa908; border: 2px solid #000; font-family: Arial, sans-serif;"> Submit Response
                                     <i class="fas fa-angle-right mr-1"></i>
                                     <i class="fas fa-angle-right mr-1"></i>
                                 </button>
                             </center>
+                            </div>
                         </form>
                     </div>
                 </div>

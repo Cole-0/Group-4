@@ -46,14 +46,16 @@
        padding-right: 20px;
   }
 
-  .info-card {
+  /*register card */
+  .info-card {  
     background-color: whitesmoke;
     border: 3px solid #dcdcdc; /* Border color same as first card */
        border-radius: 40px;
+       margin-top: 17px;
   }
 
   .info-card2 {
-    margin-top: 50px;
+    margin-top: 30px;
     background-color: whitesmoke;
     border: 3px solid #dcdcdc; /* Border color same as first card */
     border-radius: 40px;

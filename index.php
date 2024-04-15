@@ -102,7 +102,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
               </center>
               <div class="col-12 mb-3">
               <div class="input-group-prepend">
-                    <span class="input-group-text">Email:</span>
+                  <label>Email:</label>
                   </div>
                 <input type="text" class="form-control custom-border" id="email" name="email" placeholder="Enter your email" required>
               </div>
