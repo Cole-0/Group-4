@@ -93,5 +93,3 @@ if (isset($_POST['submit'])){ //check niya kung napindot ba yung submit button
     </div>
 </body>
 </html>
-
-
