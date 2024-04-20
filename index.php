@@ -119,8 +119,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
               </div>
               <div class="row mt-2">
                 <div class="col-8 mb-3">
-                <center><label for="verification_code">Verify you're not a Robot:</label></center>
-                <center><img src="captcha.php" alt="CAPTCHA"></center>
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text">VERIFICATION CODE</span>
@@ -128,6 +126,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     <input type="text" class="form-control custom-border" id="verification" name="verification_code" placeholder="Enter the verification code" required>
                     
                   </div>
+                </div>
+                <div class="col-4 mb-3">
+                <center><label for="verification_code">Verify you're not a Robot:</label></center>
+                  <center><img src="captcha.php" alt="CAPTCHA"></center>
                 </div>
               </div>
               <center>
