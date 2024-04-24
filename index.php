@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $_SESSION["UID"] = $user["UID"];
                 $_SESSION["email"] = $user["email"];
                 // Redirect to a dashboard or home page after successful login
-                header("Location: home.php");
+                header("Location: mainpage.php");
                 exit();
             } elseif (isset($user['status']) && $user['status'] == 1) {
                 // User status is 1, redirect to registration page
@@ -145,6 +145,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     </div>
   </form>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="iconscript.js"></script>
   <script src="button.js"></script>
 </body>
