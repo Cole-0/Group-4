@@ -28,8 +28,14 @@
         </ul>
       </div>
       <div class="col-10">
-        <!-- Main content goes here -->
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <div class="card">
+          <div class="card-body  center-content">
+            <img src="user.png" class="card-img-top small-image" alt="User">
+            <h5 class="card-title" id="userName">User Name</h5>
+            <p class="card-text">Professor.</p>
+          </div>
+        </div>
+        <br><br><br><br><br>
         <div class="card">
           <div class="card-header">
             Seminar Information
@@ -90,5 +96,18 @@
     color: white;
     outline: 2px solid #d45500;
   }
+  .center-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+    flex-direction: column;
+  }
+  .small-image {
+    margin-top: 100px;
+    width: 100px;
+    height: 100px;
+  }
+  
 </style>
 </html>
