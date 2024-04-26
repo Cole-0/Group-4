@@ -70,6 +70,16 @@ if (isset($_POST['submit'])) {
         </ul>
       </div>
       <div class="col-10">
+
+        <div class="card">
+          <div class="card-body  center-content">
+            <img src="assets/user.png" class="card-img-top small-image" alt="User">
+            <h5 class="card-title" id="userName">User Name</h5>
+            <p class="card-text">Professor.</p>
+          </div>
+        </div>
+        <br><br><br><br><br>
+=======
         <!-- Main content goes here -->
         <br>
         <div class="card">
@@ -141,5 +151,18 @@ if (isset($_POST['submit'])) {
     color: white;
     outline: 2px solid #d45500;
   }
+  .center-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+    flex-direction: column;
+  }
+  .small-image {
+    margin-top: 100px;
+    width: 100px;
+    height: 100px;
+  }
+  
 </style>
 </html>

@@ -23,15 +23,46 @@
             <a class="btn btn-block" href="addseminar.php">Add</a>
           </li>
           <li class="nav-item">
-            <button class="btn btn-block" type="button">Delete</button>
+            <a class="btn btn-block" href="delseminar.php">Delete</a>
           </li>
           <li class="nav-item">
-            <button class="btn btn-block" type="button">Logout</button>
+            <a class="btn btn-block" type="button">Logout</a>
           </li>
         </ul>
       </div>
       <div class="col-10">
-        <!-- Main content goes here -->
+        <div class="card">
+          <div class="card-body  center-content">
+            <img src="assets/user.png" class="card-img-top small-image" alt="User">
+            <h5 class="card-title" id="userName">User Name</h5>
+            <p class="card-text">Professor.</p>
+          </div>
+        </div>
+        <br><br><br><br><br>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Seminar Title</h5>
+            <p class="card-text">Description: SEMINAR_DESCRIPTION</p>
+            <p class="card-text">Date: SEMINAR_DATE</p>
+            <p class="card-text">Location: SEMINAR_LOCATION</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Seminar Title</h5>
+            <p class="card-text">Description: SEMINAR_DESCRIPTION</p>
+            <p class="card-text">Date: SEMINAR_DATE</p>
+            <p class="card-text">Location: SEMINAR_LOCATION</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Seminar Title</h5>
+            <p class="card-text">Description: SEMINAR_DESCRIPTION</p>
+            <p class="card-text">Date: SEMINAR_DATE</p>
+            <p class="card-text">Location: SEMINAR_LOCATION</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -69,6 +100,18 @@
     background-color: #808080;
     color: white;
     outline: 2px solid #d45500;
+  }
+  .center-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+    flex-direction: column;
+  }
+  .small-image {
+    margin-top: 100px;
+    width: 100px;
+    height: 100px;
   }
 </style>
 </html>
