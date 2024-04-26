@@ -1,3 +1,45 @@
+<?php
+session_start();
+
+if (isset($_POST['submit'])) {
+    // Include database connection file
+    include('db/connect.php');
+
+    // Initialize error and success messages
+    $error = "";
+    $success = "";
+
+    // Retrieve form data
+    $title = $_POST['seminarTitle'];
+    $date = $_POST['seminarDate'];
+    $place = $_POST['seminarLocation'];
+    $nature_training = $_POST['natureoftraining'];
+    $certificate = $_POST['certificate'];
+
+    // Validate form data (you can add validation logic here)
+
+    // Insert data into database
+    try {
+        $stmt = $pdo->prepare("INSERT INTO add_seminar (title, date, place, nature_training, certificate) VALUES (:title, :date, :place, :nature_training, :certificate)");
+        $stmt->bindParam(':title', $title);
+        $stmt->bindParam(':date', $date);
+        $stmt->bindParam(':place', $place);
+        $stmt->bindParam(':nature_training', $nature_training);
+        $stmt->bindParam(':certificate', $certificate);
+
+        if ($stmt->execute()) {
+            $success = "Seminar information added successfully";
+        } else {
+            $error = "Failed to add seminar information";
+        }
+    } catch (PDOException $e) {
+        $error = "Error: " . $e->getMessage();
+    }
+}
+?>
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,6 +70,7 @@
         </ul>
       </div>
       <div class="col-10">
+
         <div class="card">
           <div class="card-body  center-content">
             <img src="assets/user.png" class="card-img-top small-image" alt="User">
@@ -36,26 +79,38 @@
           </div>
         </div>
         <br><br><br><br><br>
+=======
+        <!-- Main content goes here -->
+        <br>
         <div class="card">
           <div class="card-header">
             Seminar Information
           </div>
           <div class="card-body">
-            <form>
-              <div class="form-group">
-                <label for="seminarTitle">Title</label>
-                <input type="text" class="form-control" id="seminarTitle" placeholder="Enter seminar title">
-              </div>
-              <div class="form-group">
-                <label for="seminarDate">Date</label>
-                <input type="date" class="form-control" id="seminarDate">
-              </div>
-              <div class="form-group">
-                <label for="seminarLocation">Location</label>
-                <input type="text" class="form-control" id="seminarLocation" placeholder="Enter seminar location">
-              </div>
-              <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+          <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                <div class="form-group">
+                    <label for="seminarTitle">Title</label>
+                    <input type="text" class="form-control" id="seminarTitle" name="seminarTitle" placeholder="Enter seminar title">
+                </div>
+                <div class="form-group">
+                    <label for="seminarDate">Date</label>
+                    <input type="date" class="form-control" id="seminarDate" name="seminarDate">
+                </div>
+                <div class="form-group">
+                    <label for="seminarLocation">Location</label>
+                    <input type="text" class="form-control" id="seminarLocation" name="seminarLocation" placeholder="Enter seminar location">
+                </div>
+                <div class="form-group">
+                    <label for="natureoftraining">Nature of Training</label>
+                    <input type="text" class="form-control" id="natureoftraining" name="natureoftraining" placeholder="Enter the nature of your seminar attended">
+                </div>
+                <div class="form-group">
+                    <label for="certificate">Certificate</label>
+                    <input type="text" class="form-control" id="certificate" name="certificate" placeholder="Enter certificate">
+                </div>
+                <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+          </form>
+
           </div>
         </div>
       </div>
