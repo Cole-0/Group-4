@@ -38,42 +38,42 @@ if (isset($_POST['confirm'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Confirm Registration</title>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      background-color: #D7CCC8;
-    }
-    .container {
-      margin-top: 50px;
-    }
-  </style>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <link href="styleactivation.css" rel="stylesheet">
+  
 </head>
 <body>
 
 <div class="container">
-  <div class="row justify-content-center">
-    <div class="col-md-6">
-      <div class="card">
-        <div class="card-header">Account not yet activated!</div>
-        <div class="card-body">
-          <?php if (isset($error)): ?>
-            <div class="alert alert-danger" role="alert">
-              <?php echo $error; ?>
-            </div>
-          <?php endif; ?>
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="activation-box">
+          <div class="title">
+              <i class="fas fa-exclamation-triangle text-dark custom-icon"></i>
+              <div>
+                <div class="activation-message1">Account not yet</div>
+                <div class="activation-message2">ACTIVATED!</div>
+              </div>
+          </div>
+          <div class="card-body">
+            <?php if (isset($error)): ?>
+              <div class="alert alert-danger" role="alert">
+                <?php echo $error; ?>
+              </div>
+            <?php endif; ?>
 
-          <form method="post" action="signup.php">
-            <div class="form-group">
-              <label for="code">Enter the activation code:</label>
-              <input type="text" class="form-control" id="code" name="code" required>
-            </div>
-            <button type="submit" name="confirm" class="btn btn-primary">Confirm Registration</button>
-          </form>
+            <form method="post" action="signup.php">
+              <div class="form-group">
+                <label for="code"><b>Enter the activation code:<b></label>
+                <input type="text" class="form-control form-control-customize" id="code" name="code" required>
+              </div><center>
+              <button type="submit" name="confirm" class="btn btn-custom">Confirm Registration</button></center>
+            </form>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>

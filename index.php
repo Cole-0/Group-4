@@ -133,7 +133,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 </div>
               </div>
               <center>
-                <button type="submit" class="btn py-1 px-4" id="login-btn" style="background-color: #ffa908; border: 2px solid #000; font-family: Arial, sans-serif;"> Login
+                <button type="submit" class="btn py-1 px-4" id="login-btn" style="background-color: #ffa908; border: 2px solid #000; font-family: Arial, sans-serif;width: 200px"> Login
                   <i class="fas fa-angle-right mr-1"></i>
                   <i class="fas fa-angle-right mr-1"></i>
                 </button>
