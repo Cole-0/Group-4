@@ -128,7 +128,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                   </div>
                 </div>
                 <div class="col-4 mb-3">
-                <center><label for="verification_code">Verify you're not a Robot:</label></center>
+                
                   <center><img src="captcha.php" alt="CAPTCHA"></center>
                 </div>
               </div>
