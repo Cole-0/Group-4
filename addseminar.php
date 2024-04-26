@@ -30,7 +30,7 @@
       <div class="col-10">
         <div class="card">
           <div class="card-body  center-content">
-            <img src="user.png" class="card-img-top small-image" alt="User">
+            <img src="assets/user.png" class="card-img-top small-image" alt="User">
             <h5 class="card-title" id="userName">User Name</h5>
             <p class="card-text">Professor.</p>
           </div>
