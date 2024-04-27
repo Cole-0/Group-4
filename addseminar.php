@@ -1,42 +1,49 @@
 <?php
 session_start();
+include('db/connect.php');
 
-if (isset($_POST['submit'])) {
-    // Include database connection file
-    include('db/connect.php');
+$fname = $_SESSION['fname'];
+$lname = $_SESSION['lname'];
 
-    // Initialize error and success messages
-    $error = "";
-    $success = "";
-
-    // Retrieve form data
+if (isset($_POST["submit"])) {
     $title = $_POST['seminarTitle'];
     $date = $_POST['seminarDate'];
     $place = $_POST['seminarLocation'];
-    $nature_training = $_POST['natureoftraining'];
+    $nature = $_POST['natureoftraining'];
     $certificate = $_POST['certificate'];
 
     // Validate form data (you can add validation logic here)
 
-    // Insert data into database
-    try {
-        $stmt = $pdo->prepare("INSERT INTO add_seminar (title, date, place, nature_training, certificate) VALUES (:title, :date, :place, :nature_training, :certificate)");
-        $stmt->bindParam(':title', $title);
-        $stmt->bindParam(':date', $date);
-        $stmt->bindParam(':place', $place);
-        $stmt->bindParam(':nature_training', $nature_training);
-        $stmt->bindParam(':certificate', $certificate);
+    if (empty($title) || empty($date) || empty($place) || empty($nature) || empty($certificate)) {
+        echo "<script>alert('Please fill in all fields!');</script>";
+    } else {
+        // Check if the seminar already exists
+        $checkSeminarQuery = "SELECT * FROM crud WHERE title = :title AND date = :date AND place = :place";
+        $checkSeminarResult = $conn->prepare($checkSeminarQuery);
+        $checkSeminarResult->execute(array(":title" => $title, ":date" => $date, ":place" => $place));
 
-        if ($stmt->execute()) {
-            $success = "Seminar information added successfully";
+        if ($checkSeminarResult->rowCount() > 0) {
+            echo "<script>alert('Seminar already exists!');</script>";
         } else {
-            $error = "Failed to add seminar information";
+            // Seminar doesn't exist, insert a new row
+            $insertSeminarQuery = "INSERT INTO crud (title, date, place, nature, certificate) VALUES (:title, :date, :place, :nature, :certificate)";
+            $insertSeminarResult = $conn->prepare($insertSeminarQuery);
+            $insertSeminarResult->execute(array(":title" => $title, ":date" => $date, ":place" => $place, ":nature" => $nature, ":certificate" => $certificate));
+
+            echo "<script>alert('Seminar added successfully!');</script>";
+
+            // Log the action in the auditlog table
+            $UID = $_SESSION['UID'];
+  
         }
-    } catch (PDOException $e) {
-        $error = "Error: " . $e->getMessage();
+
+        header("Location: mainpage.php");
+        exit();
     }
 }
 ?>
+
+
 
 
 
@@ -74,13 +81,14 @@ if (isset($_POST['submit'])) {
         <div class="card">
           <div class="card-body  center-content">
             <img src="assets/user.png" class="card-img-top small-image" alt="User">
-            <h5 class="card-title" id="userName">User Name</h5>
+            <h5 class="card-title" id="userName"><a class="nav-link" href="#">
+          <i class="bi bi-person-circle"></i> Hello, <?php echo htmlspecialchars($fname); ?>
+        </a></h5>
             <p class="card-text">Professor.</p>
           </div>
         </div>
         <br><br><br><br><br>
-=======
-        <!-- Main content goes here -->
+
         <br>
         <div class="card">
           <div class="card-header">
