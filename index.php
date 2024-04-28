@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $_SESSION["UID"] = $user["UID"];
                 $_SESSION["email"] = $user["email"];
                 // Redirect to a dashboard or home page after successful login
-                header("Location: home.php");
+                header("Location: mainpage.php");
                 exit();
             } elseif (isset($user['status']) && $user['status'] == 1) {
                 // User status is 1, redirect to registration page
@@ -119,8 +119,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
               </div>
               <div class="row mt-2">
                 <div class="col-8 mb-3">
-                <center><label for="verification_code">Verify you're not a Robot:</label></center>
-                <center><img src="captcha.php" alt="CAPTCHA"></center>
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text">VERIFICATION CODE</span>
@@ -129,9 +127,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     
                   </div>
                 </div>
+                <div class="col-4 mb-3">
+                
+                  <center><img src="captcha.php" alt="CAPTCHA"></center>
+                </div>
               </div>
               <center>
-                <button type="submit" class="btn py-1 px-4" id="login-btn" style="background-color: #ffa908; border: 2px solid #000; font-family: Arial, sans-serif;"> Login
+                <button type="submit" class="btn py-1 px-4" id="login-btn" style="background-color: #ffa908; border: 2px solid #000; font-family: Arial, sans-serif;width: 200px"> Login
                   <i class="fas fa-angle-right mr-1"></i>
                   <i class="fas fa-angle-right mr-1"></i>
                 </button>
@@ -143,6 +145,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     </div>
   </form>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="iconscript.js"></script>
   <script src="button.js"></script>
 </body>
