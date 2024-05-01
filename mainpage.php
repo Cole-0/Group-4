@@ -40,28 +40,30 @@
         </div>
         <br><br><br><br><br>
         <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Seminar Title</h5>
-            <p class="card-text">Description: SEMINAR_DESCRIPTION</p>
-            <p class="card-text">Date: SEMINAR_DATE</p>
-            <p class="card-text">Location: SEMINAR_LOCATION</p>
-          </div>
+          <table class="card-body">
+            <tr>
+              <th>Seminar Title</th>
+              <th>Description</th>
+              <th>Date</th>
+              <th>Location</th>
+            </tr>
+            <tr>
+              <td><h5 class="card-title">Seminar Title</h5></td>
+              <td><p class="card-text">SEMINAR_DESCRIPTION</p></td>
+              <td><p class="card-text">SEMINAR_DATE</p></td>
+              <td><p class="card-text">SEMINAR_LOCATION</p></td>
+            </tr>
+          </table>
         </div>
         <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Seminar Title</h5>
-            <p class="card-text">Description: SEMINAR_DESCRIPTION</p>
-            <p class="card-text">Date: SEMINAR_DATE</p>
-            <p class="card-text">Location: SEMINAR_LOCATION</p>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Seminar Title</h5>
-            <p class="card-text">Description: SEMINAR_DESCRIPTION</p>
-            <p class="card-text">Date: SEMINAR_DATE</p>
-            <p class="card-text">Location: SEMINAR_LOCATION</p>
-          </div>
+          <table class="card-body">
+            <tr>
+              <td><h5 class="card-title">Seminar Title</h5></td>
+              <td><p class="card-text">SEMINAR_DESCRIPTION</p></td>
+              <td><p class="card-text">SEMINAR_DATE</p></td>
+              <td><p class="card-text">SEMINAR_LOCATION</p></td>
+            </tr>
+          </table>
         </div>
       </div>
     </div>
