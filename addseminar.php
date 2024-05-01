@@ -106,7 +106,7 @@ if (isset($_POST['submit'])) {
                 </div>
                 <div class="form-group">
                     <label for="certificate">Certificate</label>
-                    <input type="text" class="form-control" id="certificate" name="certificate" placeholder="Enter certificate">
+                    <input type="file" class="form-control" id="certificate" name="certificate" accept="image/*">
                 </div>
                 <button type="submit" name="submit" class="btn btn-primary">Submit</button>
           </form>
