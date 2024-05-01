@@ -1,3 +1,25 @@
+<?php
+session_start();
+include('db/connect.php');
+// Check if the user is logged in
+if (!isset($_SESSION['UID'])) {
+  // If not logged in, redirect to the login page
+  header("Location: index.php");
+  exit();
+}
+
+$fname = $_SESSION['fname'];
+$lname = $_SESSION['lname'];
+$position = $_SESSION['position'];
+$course = $_SESSION['course'];
+
+// Fetch seminars for the logged-in user
+$seminarQuery = "SELECT * FROM crud WHERE UID = :UID";
+$seminarResult = $conn->prepare($seminarQuery);
+$seminarResult->execute(array(":UID" => $_SESSION['UID']));
+$seminars = $seminarResult->fetchAll(PDO::FETCH_ASSOC);
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,69 +28,64 @@
 </head>
 <body>
 
-  <nav class="navbar navbar-expand-sm">
-    <a class="navbar-brand" href="#">Seminar Information Page</a>
-    <form class="form-inline ml-auto">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search">
-      <button class="btn btn-muted my-2 my-sm-0" type="submit">Search</button>
-    </form>
-  </nav>
+<nav class="navbar navbar-expand-sm">
+  <a class="navbar-brand" href="#">Seminar Information Page</a>
+  <form class="form-inline ml-auto">
+    <input class="form-control mr-sm-2" type="text" placeholder="Search">
+    <button class="btn btn-muted my-2 my-sm-0" type="submit">Search</button>
+  </form>
+</nav>
 
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-2 sidebar">
-        <ul class="nav flex-column">
-          <br>
-          <li class="nav-item">
-            <a class="btn btn-block" href="addseminar.php">Add</a>
-          </li>
-          <li class="nav-item">
-            <a class="btn btn-block" href="delseminar.php">Delete</a>
-          </li>
-          <li class="nav-item">
-            <a class="btn btn-block" type="button">Logout</a>
-          </li>
-        </ul>
-      </div>
-      <div class="col-10">
-        <div class="card">
-          <div class="card-body  center-content">
-            <img src="assets/user.png" class="card-img-top small-image" alt="User">
-            <h5 class="card-title" id="userName">User Name</h5>
-            <p class="card-text">Professor.</p>
-          </div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-2 sidebar">
+      <ul class="nav flex-column">
+        <br>
+        <li class="nav-item">
+          <a class="btn btn-block" href="addseminar.php">Add</a>
+        </li>
+        <li class="nav-item">
+          <a class="btn btn-block" type="button" href="logout.php">Logout</a>
+        </li>
+      </ul>
+    </div>
+    <div class="col-10">
+      
+      
+        <div class="card-body  center-content">
+          <img src="assets/user.png" class="card-img-top small-image" alt="User">
+          <h5 class="card-title" id="userName"><i class="bi bi-person-circle"></i><?php echo htmlspecialchars($fname); ?> <?php echo htmlspecialchars($lname); ?></h5>
+          <p class="card-text"><?php echo htmlspecialchars($course); ?> - <?php echo htmlspecialchars($position); ?></p>
         </div>
-        <br><br><br><br><br>
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Seminar Title</h5>
-            <p class="card-text">Description: SEMINAR_DESCRIPTION</p>
-            <p class="card-text">Date: SEMINAR_DATE</p>
-            <p class="card-text">Location: SEMINAR_LOCATION</p>
-          </div>
-        </div>
+        
+      <br><br><br><br><br>
+      <h3>List of Seminars Attended</h3>
+     
+      <?php if (count($seminars) === 0): ?>
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">Seminar Title</h5>
-            <p class="card-text">Description: SEMINAR_DESCRIPTION</p>
-            <p class="card-text">Date: SEMINAR_DATE</p>
-            <p class="card-text">Location: SEMINAR_LOCATION</p>
+            <p class="card-text">No seminars attended.</p>
           </div>
         </div>
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Seminar Title</h5>
-            <p class="card-text">Description: SEMINAR_DESCRIPTION</p>
-            <p class="card-text">Date: SEMINAR_DATE</p>
-            <p class="card-text">Location: SEMINAR_LOCATION</p>
+      <?php else: ?>
+        <?php foreach ($seminars as $seminar): ?>
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title"><?php echo $seminar['title']; ?></h4>
+              <p class="card-title">Nature of Seminar: <?php echo $seminar['nature']; ?></p>
+              <p class="card-text">Date: <?php echo $seminar['date']; ?></p>
+              <p class="card-text">Location: <?php echo $seminar['place']; ?></p>
+              <p class="card-text"><a href="view_certificate.php?id=<?php echo $seminar['id']; ?>">View Certificate</a></p>
+            </div>
           </div>
-        </div>
-      </div>
+        <?php endforeach; ?>
+      <?php endif; ?>
     </div>
   </div>
+</div>
 
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 </body>
 <style>

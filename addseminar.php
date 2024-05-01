@@ -2,15 +2,24 @@
 session_start();
 include('db/connect.php');
 
+// Check if the user is logged in
+if (!isset($_SESSION['UID'])) {
+  // If not logged in, redirect to the login page
+  header("Location: index.php");
+  exit();
+}
+
 $fname = $_SESSION['fname'];
 $lname = $_SESSION['lname'];
+$position = $_SESSION['position'];
+$course = $_SESSION['course'];
 
 if (isset($_POST["submit"])) {
     $title = $_POST['seminarTitle'];
     $date = $_POST['seminarDate'];
     $place = $_POST['seminarLocation'];
     $nature = $_POST['natureoftraining'];
-    $certificate = $_POST['certificate'];
+    $certificate = file_get_contents($_FILES['certificate']['tmp_name']); // Get the contents of the uploaded file
 
     // Validate form data (you can add validation logic here)
 
@@ -26,15 +35,20 @@ if (isset($_POST["submit"])) {
             echo "<script>alert('Seminar already exists!');</script>";
         } else {
             // Seminar doesn't exist, insert a new row
-            $insertSeminarQuery = "INSERT INTO crud (title, date, place, nature, certificate) VALUES (:title, :date, :place, :nature, :certificate)";
+            $insertSeminarQuery = "INSERT INTO crud (UID, title, date, place, nature, certificate) VALUES (:UID, :title, :date, :place, :nature, :certificate)";
             $insertSeminarResult = $conn->prepare($insertSeminarQuery);
-            $insertSeminarResult->execute(array(":title" => $title, ":date" => $date, ":place" => $place, ":nature" => $nature, ":certificate" => $certificate));
+            $insertSeminarResult->bindParam(":UID", $_SESSION['UID']);
+            $insertSeminarResult->bindParam(":title", $title);
+            $insertSeminarResult->bindParam(":date", $date);
+            $insertSeminarResult->bindParam(":place", $place);
+            $insertSeminarResult->bindParam(":nature", $nature);
+            $insertSeminarResult->bindParam(":certificate", $certificate, PDO::PARAM_LOB); 
 
-            echo "<script>alert('Seminar added successfully!');</script>";
-
-            // Log the action in the auditlog table
-            $UID = $_SESSION['UID'];
-  
+            if ($insertSeminarResult->execute()) {
+                echo "<script>alert('Seminar added successfully!');</script>";
+            } else {
+                echo "<script>alert('Failed to add seminar!');</script>";
+            }
         }
 
         header("Location: mainpage.php");
@@ -42,10 +56,6 @@ if (isset($_POST["submit"])) {
     }
 }
 ?>
-
-
-
-
 
 <!DOCTYPE html>
 <html>
@@ -55,78 +65,90 @@ if (isset($_POST["submit"])) {
 </head>
 <body>
 
-  <nav class="navbar navbar-expand-sm">
-    <a class="navbar-brand" href="#">Adding Seminar Information</a>
-    <form class="form-inline ml-auto">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search">
-      <button class="btn btn-muted my-2 my-sm-0" type="submit">Search</button>
-    </form>
-  </nav>
+<nav class="navbar navbar-expand-sm">
+  <a class="navbar-brand" href="#">Adding Seminar Information</a>
+  <form class="form-inline ml-auto">
+    <input class="form-control mr-sm-2" type="text" placeholder="Search">
+    <button class="btn btn-muted my-2 my-sm-0" type="submit">Search</button>
+  </form>
+</nav>
 
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-2 sidebar">
-        <ul class="nav flex-column">
-          <br>
-          <li class="nav-item">
-            <a class="btn btn-block" href="mainpage.php">Back</a>
-          </li>
-          <li class="nav-item">
-            <a class="btn btn-block" href="#">Logout</a>
-          </li>
-        </ul>
-      </div>
-      <div class="col-10">
-
-        <div class="card">
-          <div class="card-body  center-content">
-            <img src="assets/user.png" class="card-img-top small-image" alt="User">
-            <h5 class="card-title" id="userName"><a class="nav-link" href="#">
-          <i class="bi bi-person-circle"></i> Hello, <?php echo htmlspecialchars($fname); ?>
-        </a></h5>
-            <p class="card-text">Professor.</p>
-          </div>
-        </div>
-        <br><br><br><br><br>
-
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-2 sidebar">
+      <ul class="nav flex-column">
         <br>
-        <div class="card">
-          <div class="card-header">
-            Seminar Information
-          </div>
-          <div class="card-body">
-          <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-                <div class="form-group">
-                    <label for="seminarTitle">Title</label>
-                    <input type="text" class="form-control" id="seminarTitle" name="seminarTitle" placeholder="Enter seminar title">
-                </div>
-                <div class="form-group">
-                    <label for="seminarDate">Date</label>
-                    <input type="date" class="form-control" id="seminarDate" name="seminarDate">
-                </div>
-                <div class="form-group">
-                    <label for="seminarLocation">Location</label>
-                    <input type="text" class="form-control" id="seminarLocation" name="seminarLocation" placeholder="Enter seminar location">
-                </div>
-                <div class="form-group">
-                    <label for="natureoftraining">Nature of Training</label>
-                    <input type="text" class="form-control" id="natureoftraining" name="natureoftraining" placeholder="Enter the nature of your seminar attended">
-                </div>
-                <div class="form-group">
-                    <label for="certificate">Certificate</label>
-                    <input type="text" class="form-control" id="certificate" name="certificate" placeholder="Enter certificate">
-                </div>
-                <button type="submit" name="submit" class="btn btn-primary">Submit</button>
-          </form>
+        <li class="nav-item">
+          <a class="btn btn-block" href="mainpage.php">Back</a>
+        </li>
+        <li class="nav-item">
+          <a class="btn btn-block"  href="logout.php">Logout</a>
+        </li>
+      </ul>
+    </div>
+    <div class="col-10">
 
-          </div>
+      <div class="card">
+        <div class="card-body  center-content">
+          <img src="assets/user.png" class="card-img-top small-image" alt="User">
+          <h5 class="card-title" id="userName"><i class="bi bi-person-circle"></i><?php echo htmlspecialchars($fname); ?> <?php echo htmlspecialchars($lname); ?></h5>
+          <p class="card-text"><?php echo htmlspecialchars($course); ?> - <?php echo htmlspecialchars($position); ?></p>
+        </div>
+      </div>
+      <br><br><br><br><br>
+
+      <br>
+      <div class="card">
+        <div class="card-header">
+          Seminar Information
+        </div>
+        <div class="card-body">
+          <form id="seminarForm" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" enctype="multipart/form-data"> 
+            <div class="form-group">
+              <label for="seminarTitle">Title</label>
+              <input type="text" class="form-control" id="seminarTitle" name="seminarTitle" placeholder="Enter seminar title">
+            </div>
+            <div class="form-group">
+              <label for="seminarDate">Date</label>
+              <input type="date" class="form-control" id="seminarDate" name="seminarDate">
+            </div>
+            <div class="form-group">
+              <label for="seminarLocation">Location</label>
+              <input type="text" class="form-control" id="seminarLocation" name="seminarLocation" placeholder="Enter seminar location">
+            </div>
+            <div class="form-group">
+              <label for="natureoftraining">Nature of Training</label>
+              <input type="text" class="form-control" id="natureoftraining" name="natureoftraining" placeholder="Enter the nature of your seminar attended">
+            </div>
+            <div class="form-group">
+              <label for="certificate">Certificate</label>
+              <input type="file" class="form-control-file" id="certificate" name="certificate"> 
+            </div>
+            <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+          </form>
         </div>
       </div>
     </div>
   </div>
+</div>
 
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<script>
+  // Client-side validation for file size
+  document.getElementById('seminarForm').addEventListener('submit', function(event) {
+    var fileInput = document.getElementById('certificate');
+    if (fileInput.files.length > 0) {
+      var fileSize = fileInput.files[0].size; // in bytes
+      var maxSize = 1024 * 1024; // 1MB
+      if (fileSize > maxSize) {
+        alert('The uploaded image size exceeds the maximum allowed size of 1MB.');
+        event.preventDefault(); // Prevent form submission
+      }
+    }
+  });
+</script>
 
 </body>
 <style>
@@ -171,6 +193,5 @@ if (isset($_POST["submit"])) {
     width: 100px;
     height: 100px;
   }
-  
 </style>
 </html>

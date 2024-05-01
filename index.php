@@ -33,6 +33,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             if (isset($user['status']) && $user['status'] == 2) {
                 // Login successful, set session variables
                 $_SESSION["UID"] = $user["UID"];
+                $_SESSION["fname"] = $user["fname"];
+                $_SESSION["lname"] = $user["lname"];
+                $_SESSION["position"] = $user["position"];
+                $_SESSION["course"] = $user["course"];
                 $_SESSION["email"] = $user["email"];
                 // Redirect to a dashboard or home page after successful login
                 header("Location: mainpage.php");
