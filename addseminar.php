@@ -66,7 +66,7 @@ if (isset($_POST["submit"])) {
 <body>
 
 <nav class="navbar navbar-expand-sm">
-  <a class="navbar-brand" href="#">Adding Seminar Information</a>
+  <a class="navbar-brand">Adding Seminar Information</a>
   <form class="form-inline ml-auto">
     <input class="form-control mr-sm-2" type="text" placeholder="Search">
     <button class="btn btn-muted my-2 my-sm-0" type="submit">Search</button>
@@ -135,20 +135,6 @@ if (isset($_POST["submit"])) {
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-<script>
-  // Client-side validation for file size
-  document.getElementById('seminarForm').addEventListener('submit', function(event) {
-    var fileInput = document.getElementById('certificate');
-    if (fileInput.files.length > 0) {
-      var fileSize = fileInput.files[0].size; // in bytes
-      var maxSize = 1024 * 1024; // 1MB
-      if (fileSize > maxSize) {
-        alert('The uploaded image size exceeds the maximum allowed size of 1MB.');
-        event.preventDefault(); // Prevent form submission
-      }
-    }
-  });
-</script>
 
 </body>
 <style>

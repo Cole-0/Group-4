@@ -50,36 +50,45 @@ $seminars = $seminarResult->fetchAll(PDO::FETCH_ASSOC);
       </ul>
     </div>
     <div class="col-10">
-      
-      
-        <div class="card-body  center-content">
-          <img src="assets/user.png" class="card-img-top small-image" alt="User">
-          <h5 class="card-title" id="userName"><i class="bi bi-person-circle"></i><?php echo htmlspecialchars($fname); ?> <?php echo htmlspecialchars($lname); ?></h5>
-          <p class="card-text"><?php echo htmlspecialchars($course); ?> - <?php echo htmlspecialchars($position); ?></p>
-        </div>
+      <div class="card-body  center-content">
+        <img src="assets/user.png" class="card-img-top small-image" alt="User">
+        <h5 class="card-title" id="userName"><i class="bi bi-person-circle"></i><?php echo htmlspecialchars($fname); ?> <?php echo htmlspecialchars($lname); ?></h5>
+        <p class="card-text"><?php echo htmlspecialchars($course); ?> - <?php echo htmlspecialchars($position); ?></p>
+      </div>
         
       <br><br><br><br><br>
       <h3>List of Seminars Attended</h3>
-     
-      <?php if (count($seminars) === 0): ?>
-        <div class="card">
-          <div class="card-body">
-            <p class="card-text">No seminars attended.</p>
-          </div>
-        </div>
-      <?php else: ?>
-        <?php foreach ($seminars as $seminar): ?>
-          <div class="card">
-            <div class="card-body">
-              <h4 class="card-title"><?php echo $seminar['title']; ?></h4>
-              <p class="card-title">Nature of Seminar: <?php echo $seminar['nature']; ?></p>
-              <p class="card-text">Date: <?php echo $seminar['date']; ?></p>
-              <p class="card-text">Location: <?php echo $seminar['place']; ?></p>
-              <p class="card-text"><a href="view_certificate.php?id=<?php echo $seminar['id']; ?>">View Certificate</a></p>
-            </div>
-          </div>
-        <?php endforeach; ?>
-      <?php endif; ?>
+      
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Seminar Title</th>
+              <th>Nature</th>
+              <th>Date</th>
+              <th>Location</th>
+              <th>Certificate</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php if (count($seminars) === 0): ?>
+              <tr>
+                <td colspan="5">No seminars attended.</td>
+              </tr>
+            <?php else: ?>
+              <?php foreach ($seminars as $seminar): ?>
+                <tr>
+                  <td><?php echo $seminar['title']; ?></td>
+                  <td><?php echo $seminar['nature']; ?></td>
+                  <td><?php echo $seminar['date']; ?></td>
+                  <td><?php echo $seminar['place']; ?></td>
+                  <td><a href="view_certificate.php?id=<?php echo $seminar['id']; ?>">View Certificate</a></td>
+                </tr>
+              <?php endforeach; ?>
+            <?php endif; ?>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>

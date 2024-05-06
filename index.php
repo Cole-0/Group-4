@@ -31,16 +31,25 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if ($user && password_verify($password, $user['password'])) {
             // email exists and password is correct
             if (isset($user['status']) && $user['status'] == 2) {
-                // Login successful, set session variables
-                $_SESSION["UID"] = $user["UID"];
-                $_SESSION["fname"] = $user["fname"];
-                $_SESSION["lname"] = $user["lname"];
-                $_SESSION["position"] = $user["position"];
-                $_SESSION["course"] = $user["course"];
-                $_SESSION["email"] = $user["email"];
-                // Redirect to a dashboard or home page after successful login
-                header("Location: mainpage.php");
-                exit();
+               // Login successful, set session variables
+              $_SESSION["UID"] = $user["UID"];
+              $_SESSION["fname"] = $user["fname"];
+              $_SESSION["lname"] = $user["lname"];
+              $_SESSION["position"] = $user["position"];
+              $_SESSION["course"] = $user["course"];
+              $_SESSION["email"] = $user["email"];
+
+// Check if the user is an admin
+if ($user['position'] == "Admin") {
+    // Redirect to admin_display.php
+    header("Location: admin_display.php");
+    exit();
+} else {
+    // Redirect to mainpage.php
+    header("Location: mainpage.php");
+    exit();
+}
+
             } elseif (isset($user['status']) && $user['status'] == 1) {
                 // User status is 1, redirect to registration page
                 $_SESSION["UID"] = $user["UID"];
